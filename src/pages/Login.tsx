@@ -27,13 +27,18 @@ const Login = () => {
   };
 
   return (
-<Box maxW='md' minW='md' margin="auto" overflowX="hidden">
-  <VStack p={5} spacing={5}>
+<Box 
+  w="100%" // Largura total da tela
+  maxW="md" // Limite máximo da largura
+  margin="auto" 
+  overflowX="hidden" // Esconde o scroll horizontal
+>
+  <VStack p={{ base: 3, sm: 5 }} spacing={5}> {/* Ajuste do padding responsivo */}
     <Image 
       w={{ base: "80px", sm: "100px" }} 
       src={AuthImage} 
       alt="Auth Image"
-      objectFit="contain"  // Isso pode evitar que a imagem distorça e ultrapasse a largura
+      objectFit="contain" // Garantir que a imagem não distorça
     />
     <Input 
       placeholder='Email' 
@@ -41,6 +46,7 @@ const Login = () => {
       value={email} 
       onChange={(e) => setEmail(e.target.value)} 
       width="full"
+      size="lg" // Aumenta o tamanho do input no celular
     />
     <Input 
       placeholder='Senha' 
@@ -48,12 +54,14 @@ const Login = () => {
       value={password} 
       onChange={(e) => setPassword(e.target.value)} 
       width="full"
+      size="lg" // Aumenta o tamanho do input no celular
     />
     <Button 
       isLoading={isLoading} 
       w="full" 
       onClick={handleLogin} 
       colorScheme="green"
+      size="lg" // Aumenta o botão no celular
     >
       {isLoading ? "Loading..." : "Login"}
     </Button>
@@ -70,6 +78,7 @@ const Login = () => {
     </HStack>
   </VStack>
 </Box>
+
 
   );
 };
