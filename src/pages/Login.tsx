@@ -27,48 +27,50 @@ const Login = () => {
   };
 
   return (
-    <Box maxW='md' minW='md' margin="auto">
-      <VStack p={5} spacing={5}>
-        <Image 
-          w={{ base: "80px", sm: "100px" }} 
-          src={AuthImage} 
-          alt="Auth Image"
-        />
-        <Input 
-          placeholder='Email' 
-          type="email" 
-          value={email} 
-          onChange={(e) => setEmail(e.target.value)} 
-          width="full"
-        />
-        <Input 
-          placeholder='Senha' 
-          type="password" 
-          value={password} 
-          onChange={(e) => setPassword(e.target.value)} 
-          width="full"
-        />
-        <Button 
-          isLoading={isLoading} 
-          w="full" 
-          onClick={handleLogin} 
-          colorScheme="green"
-        >
-          {isLoading ? "Loading..." : "Login"}
-        </Button>
-        {isFailure && (
-          <VStack borderRadius={5} w="full" mt={5} bg="red.300" p={3}>
-            <Text textColor="white" textAlign="center">{errorMsg}</Text>
-          </VStack>
-        )}
-        <HStack justify="center">
-          <Text>Do not you have an account?</Text>
-          <Button onClick={() => navigate("/register")} textColor="green" variant="link">
-            Create Account
-          </Button>
-        </HStack>
+<Box maxW='md' minW='md' margin="auto" overflowX="hidden">
+  <VStack p={5} spacing={5}>
+    <Image 
+      w={{ base: "80px", sm: "100px" }} 
+      src={AuthImage} 
+      alt="Auth Image"
+      objectFit="contain"  // Isso pode evitar que a imagem distorça e ultrapasse a largura
+    />
+    <Input 
+      placeholder='Email' 
+      type="email" 
+      value={email} 
+      onChange={(e) => setEmail(e.target.value)} 
+      width="full"
+    />
+    <Input 
+      placeholder='Senha' 
+      type="password" 
+      value={password} 
+      onChange={(e) => setPassword(e.target.value)} 
+      width="full"
+    />
+    <Button 
+      isLoading={isLoading} 
+      w="full" 
+      onClick={handleLogin} 
+      colorScheme="green"
+    >
+      {isLoading ? "Loading..." : "Login"}
+    </Button>
+    {isFailure && (
+      <VStack borderRadius={5} w="full" mt={5} bg="red.300" p={3}>
+        <Text textColor="white" textAlign="center">{errorMsg}</Text>
       </VStack>
-    </Box>
+    )}
+    <HStack justify="center">
+      <Text>Do not you have an account?</Text>
+      <Button onClick={() => navigate("/register")} textColor="green" variant="link">
+        Create Account
+      </Button>
+    </HStack>
+  </VStack>
+</Box>
+
   );
 };
 
