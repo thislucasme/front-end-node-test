@@ -63,7 +63,7 @@ const MyProfile = () => {
           {"Post"}
         </Button>
       </VStack>
-      <Box w="100%" maxW="md" margin="auto" p={3}>
+      <Box w="100%" margin="auto" p={3}>
         {isPostsLoading && (
           <Progress maxW="md" minW="md" size="xs" isIndeterminate />
         )}
