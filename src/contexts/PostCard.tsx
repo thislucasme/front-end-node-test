@@ -29,7 +29,7 @@ export const PostCard = ({ imageUrl, date, text, userName, id }: PostType) => {
       </CardBody>
       {imageUrl?.endsWith(".mp4") ?
         <>
-          <VStack maxW={"md"}>
+          <VStack >
             <ReactPlayer width={"100%"} controls={true} url={imageUrl} />
           </VStack>
         </> :
