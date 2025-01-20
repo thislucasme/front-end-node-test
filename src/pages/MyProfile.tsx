@@ -56,7 +56,7 @@ const MyProfile = () => {
         <Input
           colorScheme='teal'
           type="file"
-          accept="image/*"
+          accept="image/*, video/*"
           onChange={(e) => setPostImage(e.target.files ? e.target.files[0] : null)}
         />
         <Button isLoading={isLoading} isDisabled={postImage ? false : true} w="full" onClick={createNewPost} colorScheme='green' variant="solid">
