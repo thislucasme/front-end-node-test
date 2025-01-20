@@ -18,12 +18,12 @@ const Feed = () => {
   } = useContext(FeedContext);
 
   return (
-    <VStack >
+<VStack w="100%" overflowX="hidden">
       <VStack>
         <Spacer />
         <Logout />
       </VStack>
-      <Box>
+      <Box w="100%" maxW="md" margin="auto" p={3}>
       {isPostsLoading && (
   <Progress maxW="md" minW="md" size="xs" isIndeterminate />
 )}
