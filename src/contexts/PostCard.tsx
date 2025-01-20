@@ -1,47 +1,57 @@
-import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, Text } from "@chakra-ui/react"
+import { Avatar, Box, Button, Card, CardBody, CardFooter, CardHeader, Flex, Heading, IconButton, Image, Text, VStack } from "@chakra-ui/react"
+import ReactPlayer from "react-player"
 type PostType = {
-    imageUrl?: string,
-    text?: string,
-    userName?: string,
-    date?: string
-    id?: string
+  imageUrl?: string,
+  text?: string,
+  userName?: string,
+  date?: string
+  id?: string
 }
-export const PostCard = ({imageUrl, date, text, userName, id}: PostType) => {
+export const PostCard = ({ imageUrl, date, text, userName, id }: PostType) => {
   return (
     <Card maxW='md'>
-    <CardHeader>
-      <Flex>
-        <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
-          <Avatar name={userName} />
-  
-          <Box>
-            <Heading size='sm'>{userName}</Heading>
-            <Text>{date}</Text>
-          </Box>
+      <CardHeader>
+        <Flex>
+          <Flex flex='1' gap='4' alignItems='center' flexWrap='wrap'>
+            <Avatar name={userName} />
+
+            <Box>
+              <Heading size='sm'>{userName}</Heading>
+              <Text>{date}</Text>
+            </Box>
+          </Flex>
         </Flex>
-      </Flex>
-    </CardHeader>
-    <CardBody>
-      <Text>
-        {text}
-      </Text>
-    </CardBody>
-    <Image
-      objectFit='cover'
-      src={imageUrl}
-      alt='Chakra UI'
-    />
-  
-    <CardFooter
-      justify='space-between'
-      flexWrap='wrap'
-      sx={{
-        '& > button': {
-          minW: '136px',
-        },
-      }}
-    >
-      {/* <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
+      </CardHeader>
+      <CardBody>
+        <Text>
+          {text}
+        </Text>
+      </CardBody>
+      {imageUrl?.endsWith(".mp4") ?
+        <>
+          <VStack maxW={"md"}>
+            <ReactPlayer width={"100%"} controls={true} url={imageUrl} />
+          </VStack>
+        </> :
+        <>    <Image
+          objectFit='cover'
+          src={imageUrl}
+          alt='Chakra UI'
+        />
+        </>}
+
+
+
+      <CardFooter
+        justify='space-between'
+        flexWrap='wrap'
+        sx={{
+          '& > button': {
+            minW: '136px',
+          },
+        }}
+      >
+        {/* <Button flex='1' variant='ghost' leftIcon={<BiLike />}>
         Like
       </Button>
       <Button flex='1' variant='ghost' leftIcon={<BiChat />}>
@@ -50,7 +60,7 @@ export const PostCard = ({imageUrl, date, text, userName, id}: PostType) => {
       <Button flex='1' variant='ghost' leftIcon={<BiShare />}>
         Share
       </Button> */}
-    </CardFooter>
-  </Card>
+      </CardFooter>
+    </Card>
   )
 }

@@ -6,6 +6,7 @@ import api from '../services/api';
 import { Empty } from '../componets/Empty';
 import { PostCard } from '../contexts/PostCard';
 import { Profile } from '../componets/Profile';
+import ReactPlayer from 'react-player';
 
 const MyProfile = () => {
   const [isLoading, setIsLoading] = useState(false)
