@@ -28,21 +28,29 @@ const Register = () => {
     };
 
     return (
-        <Box maxW='md' minW='md' margin="auto">
-            <VStack p={10}>
-               <Image w={"100px"} src={RegisterImage}/>
-                <Input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} />
-                <Input placeholder='Email' type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
-                <Input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
-                <Button isLoading={isLoading} w={"full"} onClick={handleRegister} colorScheme="green">
-                    {isLoading ? "Loading..." : "Sign Up"}
+        <Box w="100%" maxW="md" margin="auto" overflowX="hidden">
+        <VStack p={{ base: 3, sm: 5 }} spacing={5}>
+            <Image w={{ base: "80px", sm: "100px" }} src={RegisterImage} alt="Register Image" objectFit="contain" />
+            <Input placeholder='Username' value={username} onChange={(e) => setUsername(e.target.value)} width="full" size="lg" />
+            <Input placeholder='Email' type="email" value={email} onChange={(e) => setEmail(e.target.value)} width="full" size="lg" />
+            <Input placeholder='Password' type="password" value={password} onChange={(e) => setPassword(e.target.value)} width="full" size="lg" />
+            <Button isLoading={isLoading} w="full" onClick={handleRegister} colorScheme="green" size="lg">
+                {isLoading ? "Loading..." : "Sign Up"}
+            </Button>
+            {isFailure && (
+                <VStack borderRadius={5} w="full" mt={5} bg="red.300" p={3}>
+                    <Text textColor="white" textAlign="center">{errorMsg}</Text>
+                </VStack>
+            )}
+            <HStack justify="center">
+                <Text>Do you have already an account?</Text>
+                <Button onClick={() => navigate("/")} textColor="green" variant="link">
+                    Login
                 </Button>
-                {isFailure ? <VStack borderRadius={5} w={"full"} m={5} bg={"red.300"}>
-                    <Text textColor={"white"}>{errorMsg}</Text>
-                </VStack> : <></>}
-                <HStack><Text>Já possui uma conta?</Text> <Button onClick={() => navigate("/")} textColor='green' variant="plain">Fazer Login</Button></HStack>
-            </VStack>
-        </Box>
+            </HStack>
+        </VStack>
+    </Box>
+
     );
 };
 
