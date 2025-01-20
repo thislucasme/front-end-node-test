@@ -71,7 +71,7 @@ export const PostProvider: React.FC<PostProviderProps> = ({ children }) => {
             await api.post('/post', {
                  message: messagePost,
                  mediaUrl: imageUrl,
-                 postDate: "2025-01-18T10:00:00.000Z"});
+                 postDate: new Date().toISOString()});
             fetchPosts();
         } catch (error: any) {
             console.error('Error fetching posts:', error);
