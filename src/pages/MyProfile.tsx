@@ -19,7 +19,6 @@ const MyProfile = () => {
     isPostsLoading
   } = useContext(PostContext);
 
-
   const createNewPost = async () => {
     setIsLoading(true)
     await createPost()
@@ -27,7 +26,6 @@ const MyProfile = () => {
   };
 
   const handleDelete = async (id: string) => {
-
     try {
       await api.delete(`/post?id=${id}`);
       setPosts((prev: any) => prev.filter((product: any) => product.id !== id));
@@ -37,13 +35,13 @@ const MyProfile = () => {
   };
 
   return (
-    <VStack >
+    <VStack w="100%" overflowX="hidden">
       <VStack>
         <Spacer />
         <Profile />
         <Logout />
       </VStack>
-      <VStack minW={"md"}>
+      <VStack w="100%" maxW="md" p={3}>
         <Textarea
           placeholder="Write your thoughts here..."
           size="md"
@@ -60,9 +58,11 @@ const MyProfile = () => {
           accept="image/*"
           onChange={(e) => setPostImage(e.target.files ? e.target.files[0] : null)}
         />
-        <Button isLoading={isLoading} isDisabled={postImage ? false : true} w={"full"} onClick={() => { createNewPost() }} colorScheme='green' variant="solid">{"Post"}</Button>
+        <Button isLoading={isLoading} isDisabled={postImage ? false : true} w="full" onClick={createNewPost} colorScheme='green' variant="solid">
+          {"Post"}
+        </Button>
       </VStack>
-      <Box>
+      <Box w="100%" maxW="md" margin="auto" p={3}>
         {isPostsLoading && (
           <Progress maxW="md" minW="md" size="xs" isIndeterminate />
         )}
@@ -70,17 +70,20 @@ const MyProfile = () => {
           <>
             {posts?.map((post: any) => (
               <Flex key={post.id} justify="space-between" align="center" mb={4}>
-                <Box>
-                  <PostCard text={post.message} date={
-                    new Date(post.postDate).toLocaleString('en-US', {
+                <Box w="100%">
+                  <PostCard 
+                    text={post.message} 
+                    date={new Date(post.postDate).toLocaleString('en-US', {
                       month: 'long',
                       day: '2-digit',
                       year: 'numeric',
                       hour: '2-digit',
                       minute: '2-digit',
                       hour12: true,
-                    })
-                  } imageUrl={post.mediaUrl} userName={post.user.username} />
+                    })} 
+                    imageUrl={post.mediaUrl} 
+                    userName={post.user.username} 
+                  />
                   <VStack my={5}>
                     <Button onClick={() => handleDelete(post.id)} flex='1' colorScheme="red" variant='ghost'>
                       Delete
@@ -90,10 +93,7 @@ const MyProfile = () => {
               </Flex>
             ))}
           </>
-          : <>
-            <Empty />
-          </>}
-
+          : <Empty />}
       </Box>
     </VStack>
   );
